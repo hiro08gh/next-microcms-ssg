@@ -6,7 +6,9 @@ const Home = ({blogs}) => {
     <div>
       {blogs.map(blog => (
         <React.Fragment key={blog.id}>
-          <Link href={`blogs/${blog.id}`}>{blog.title}</Link>
+          <Link href={`blogs/${blog.id}`}>
+            <a>{blog.title}</a>
+          </Link>
         </React.Fragment>
       ))}
     </div>
