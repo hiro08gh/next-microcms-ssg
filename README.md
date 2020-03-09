@@ -1,6 +1,6 @@
 # Next.js + microCMS
 
-Next.js の getStaticProps と getStaticPaths を使って microCMS のデータを取得して、静的にビルドするサンプル。
+Next.jsのgetStaticPropsとgetStaticPathsを使ってmicroCMSのデータを取得して、静的にビルドするサンプル。
 
 # バージョン
 
@@ -21,7 +21,7 @@ $ cp .env.sample .env
 
 ## 開発サーバーの立ち上げ
 
-microCMS で取得し API キーとエンドポイントを env ファイルに記述。
+microCMSで取得しAPIキーとエンドポイントをenvファイルに記述。
 
 ```
 API_KEY=xxxxx
