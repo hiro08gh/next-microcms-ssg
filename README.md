@@ -1,6 +1,6 @@
 # Next.js + microCMS
 
-Next.js の getStaticProps と getStaticPaths を使って microCMS のデータを取得して、静的にビルドするサンプル。
+Next.jsのgetStaticPropsとgetStaticPathsを使ってmicroCMSのデータを取得して、静的にビルドするサンプル。
 
 # バージョン
 
@@ -15,19 +15,17 @@ $ yarn install
 ```
 
 .env.sample をコピー
-
 ```
 $ cp .env.sample .env
 ```
 
 ## 開発サーバーの立ち上げ
 
-microCMS で取得し API キーとエンドポイントを env ファイルに記述。
+microCMSで取得しAPIキーとエンドポイントをenvファイルに記述。
 
 ```
 API_KEY=xxxxx
 ENDPOINT=https://your.microcms.io/api/v1/
-
 ```
 
 アプリケーションの立ち上げ
@@ -50,7 +48,7 @@ $ yarn export
 
 ビルド時に実行させる。クライアントサイドでは実行されず、必ずサーバーサイドで実行される。
 
-```
+```javascript
 export async function getStaticProps() {
   const key = {
     headers: {'X-API-KEY': process.env.api_key},
@@ -70,11 +68,11 @@ export async function getStaticProps() {
 
 ## getStaticPaths
 
-Dynamic Routes 利用時にも静的なファイルを生成する API。
+ダイナミックルーティングの使用時に静的なファイルを生成するAPI。
 
 ファイルに[]をつけるとダイナミックルーティングになる。そのファイル内で getStaticPaths を使うことで、ダイナミックルーティングを活用して、静的なファイルを生成できる。
 
-```
+```javascript
 export async function getStaticPaths() {
   const key = {
     headers: {'X-API-KEY': process.env.API_KEY},
