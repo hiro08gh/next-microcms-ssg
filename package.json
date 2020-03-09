@@ -1,0 +1,25 @@
+{
+  "name": "next-microcms-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "hiro08gh",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "9.2.3-canary.16",
+    "node-fetch": "^2.6.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "yarn run build && next export"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "prettier": "^1.19.1"
+  }
+}
