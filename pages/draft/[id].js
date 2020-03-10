@@ -32,10 +32,8 @@ export async function getStaticProps(context) {
       `${context.preview ? '?draftKey=ZJBBDP0Bvx' : null}`,
   );
 
-  const res = await axios.get(
-    'https://hiro08.microcms.io/api/v1/blogs/xSBUPb7nZ?draftKey=ZJBBDP0Bvx',
-    key,
-  );
+  const res = await axios.get(process.env.endpoint + id, key);
+
   const blog = await res.data;
   return {
     props: {
