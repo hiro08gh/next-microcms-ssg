@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const Blog = ({blog}) => {
+const Draft = ({blog}) => {
   return (
     <div>
       <h1>{blog.title}</h1>
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
   const res = await axios.get(process.env.endpoint, key);
   const repos = await res.data.contents;
-  const paths = repos.map(repo => `/blogs/${repo.id}`);
+  const paths = repos.map(repo => `/draft/${repo.id}`);
   return {paths, fallback: false};
 }
 
@@ -29,10 +29,13 @@ export async function getStaticProps(context) {
   console.log(
     process.env.endpoint +
       id +
-      `${context.preview ? '?draftKey=preview' : null}`,
+      `${context.preview ? '?draftKey=ZJBBDP0Bvx' : null}`,
   );
 
-  const res = await axios.get(process.env.endpoint + id, key);
+  const res = await axios.get(
+    'https://hiro08.microcms.io/api/v1/blogs/xSBUPb7nZ?draftKey=ZJBBDP0Bvx',
+    key,
+  );
   const blog = await res.data;
   return {
     props: {
@@ -41,4 +44,4 @@ export async function getStaticProps(context) {
   };
 }
 
-export default Blog;
+export default Draft;
