@@ -25,7 +25,8 @@ microCMSで取得しAPIキーとエンドポイントをenvファイルに記述
 
 ```
 API_KEY=xxxxx
-ENDPOINT=https://your.microcms.io/api/v1/
+ENDPOINT=https://your.microcms.io/api/v1/blog
+PREVIEW_KEY=xxxxxxx
 ```
 
 アプリケーションの立ち上げ
