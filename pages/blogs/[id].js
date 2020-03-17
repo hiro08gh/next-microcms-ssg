@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
 const Blog = ({blog}) => {
   return (
@@ -7,33 +7,29 @@ const Blog = ({blog}) => {
     </div>
   );
 };
+
 export async function getStaticPaths() {
   const key = {
     headers: {'X-API-KEY': process.env.API_KEY},
   };
 
-  const res = await axios.get(process.env.endpoint, key);
-  const repos = await res.data.contents;
-  const paths = repos.map(repo => `/blogs/${repo.id}`);
+  const res = await fetch(process.env.endpoint + '/blogs', key);
+  const repos = await res.json();
+
+  const paths = repos.contents.map(repo => `/blogs/${repo.id}`);
   return {paths, fallback: false};
 }
 
-// ビルド時に実行される
 export async function getStaticProps(context) {
   const id = context.params.id;
-  console.log(context.preview);
+
   const key = {
     headers: {'X-API-KEY': process.env.api_key},
   };
 
-  console.log(
-    process.env.endpoint +
-      id +
-      `${context.preview ? '?draftKey=preview' : null}`,
-  );
+  const res = await fetch(process.env.endpoint + '/blogs/' + id, key);
+  const blog = await res.json();
 
-  const res = await axios.get(process.env.endpoint + id, key);
-  const blog = await res.data;
   return {
     props: {
       blog: blog,

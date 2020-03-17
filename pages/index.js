@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 
 const Home = ({blogs}) => {
@@ -20,13 +20,13 @@ export async function getStaticProps() {
     headers: {'X-API-KEY': process.env.api_key},
   };
 
-  const res = await axios.get(process.env.endpoint, key);
+  const res = await fetch(process.env.endpoint + '/blogs', key);
 
-  const data = await res.data.contents;
+  const data = await res.json();
 
   return {
     props: {
-      blogs: data,
+      blogs: data.contents,
     },
   };
 }

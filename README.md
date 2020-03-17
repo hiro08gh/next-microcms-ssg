@@ -1,6 +1,6 @@
 # Next.js + microCMS
 
-Next.jsのgetStaticPropsとgetStaticPathsを使ってmicroCMSのデータを取得して、静的にビルドするサンプル。
+Next.js の getStaticProps と getStaticPaths を使って microCMS のデータを取得して、静的にビルドするサンプル。
 
 # バージョン
 
@@ -15,17 +15,18 @@ $ yarn install
 ```
 
 .env.sample をコピー
+
 ```
 $ cp .env.sample .env
 ```
 
 ## 開発サーバーの立ち上げ
 
-microCMSで取得しAPIキーとエンドポイントをenvファイルに記述。
+microCMS で取得し API キーとエンドポイントを env ファイルに記述。
 
 ```
 API_KEY=xxxxx
-ENDPOINT=https://your.microcms.io/api/v1/blog
+ENDPOINT=https://your.microcms.io/api/v1
 PREVIEW_KEY=xxxxxxx
 ```
 
@@ -55,13 +56,13 @@ export async function getStaticProps() {
     headers: {'X-API-KEY': process.env.api_key},
   };
 
-  const res = await axios.get(process.env.endpoint, key);
+  const res = await fetch(process.env.endpoint + '/blogs', key);
 
-  const data = await res.data.contents;
+  const data = await res.json();
 
   return {
     props: {
-      blogs: data,
+      blogs: data.contents,
     },
   };
 }
@@ -69,9 +70,9 @@ export async function getStaticProps() {
 
 ## getStaticPaths
 
-ダイナミックルーティングの使用時に静的なファイルを生成するAPI。
+ダイナミックルーティングの使用時に静的なファイルを生成する API。
 
-ファイルに[]をつけるとダイナミックルーティングになる。そのファイル内で getStaticPaths を使うことで、ダイナミックルーティングを活用して、静的なファイルを生成できる。
+ファイル名に[]をつけるとダイナミックルーティングになる。そのファイル内で getStaticPaths を使うことで、ダイナミックルーティングを活用して、静的なファイルを生成できる。
 
 ```javascript
 export async function getStaticPaths() {
@@ -79,9 +80,10 @@ export async function getStaticPaths() {
     headers: {'X-API-KEY': process.env.API_KEY},
   };
 
-  const res = await axios.get(process.env.endpoint, key);
-  const repos = await res.data.contents;
-  const paths = repos.map(repo => `/blogs/${repo.id}`);
+  const res = await fetch(process.env.endpoint + '/blogs', key);
+  const repos = await res.json();
+
+  const paths = repos.contents.map(repo => `/blogs/${repo.id}`);
   return {paths, fallback: false};
 }
 ```
