@@ -8,7 +8,7 @@ const Blog = ({blog}) => {
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const key = {
     headers: {'X-API-KEY': process.env.API_KEY},
   };
@@ -18,9 +18,9 @@ export async function getStaticPaths() {
 
   const paths = repos.contents.map(repo => `/blogs/${repo.id}`);
   return {paths, fallback: false};
-}
+};
 
-export async function getStaticProps(context) {
+export const getStaticProps = async context => {
   const id = context.params.id;
 
   const key = {
@@ -35,6 +35,6 @@ export async function getStaticProps(context) {
       blog: blog,
     },
   };
-}
+};
 
 export default Blog;

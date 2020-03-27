@@ -15,7 +15,7 @@ const Home = ({blogs}) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   const key = {
     headers: {'X-API-KEY': process.env.api_key},
   };
@@ -29,6 +29,6 @@ export async function getStaticProps() {
       blogs: data.contents,
     },
   };
-}
+};
 
 export default Home;
