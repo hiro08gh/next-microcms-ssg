@@ -1,4 +1,4 @@
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
 export default async (req, res) => {
   //シークレットキーの確認
@@ -12,9 +12,8 @@ export default async (req, res) => {
 
   const url =
     process.env.endpoint + req.query.id + `?draftKey=${req.query.draftKey}`;
-  console.log(url);
 
-  const post = await axios.get(url, key);
+  const post = await fetch(url, key);
 
   //postデータが存在しない場合、401を返す
   if (!post) {
