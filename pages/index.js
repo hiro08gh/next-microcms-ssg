@@ -17,10 +17,10 @@ const Home = ({blogs}) => {
 
 export const getStaticProps = async () => {
   const key = {
-    headers: {'X-API-KEY': process.env.api_key},
+    headers: {'X-API-KEY': process.env.API_KEY},
   };
 
-  const res = await fetch(process.env.endpoint + '/blogs', key);
+  const res = await fetch(process.env.ENDPOINT + '/blogs', key);
 
   const data = await res.json();
 
