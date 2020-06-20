@@ -1,12 +1,21 @@
 # Next.js + microCMS
 
-Next.js の getStaticProps と getStaticPaths を使って microCMS のデータを取得して、静的にビルドするサンプル。
+Next.jsのgetStaticPropsとgetStaticPaths を使ってmicroCMSのデータを取得して、静的にビルドするサンプル。
 
-# バージョン
+## バージョン
 
-- Next.js 9.3.0
-- React 16.13.0
-- ReactDOM 16.13.0
+- Next.js 9.4.4
+- React 16.13.1
+- ReactDOM 16.13.1
+
+## コンテンツモデル
+まず最初にmicroCMS側でコンテンツモデルを作成する必要があります。
+
+API名 - ブログ
+エンドポイント - blogs
+
+### APIスキーマ
+- title -> テキストフィールド
 
 # 始め方
 
@@ -14,20 +23,19 @@ Next.js の getStaticProps と getStaticPaths を使って microCMS のデータ
 $ yarn install
 ```
 
-.env.sample をコピー
+.env.development.localを作成。
 
 ```
-$ cp .env.sample .env
+$ touch .env.development.local
 ```
 
 ## 開発サーバーの立ち上げ
 
-microCMS で取得し API キーとエンドポイントを env ファイルに記述。
+microCMSで取得しAPIキーとエンドポイントをenvファイルに記述。
 
 ```
 API_KEY=xxxxx
 ENDPOINT=https://your.microcms.io/api/v1
-PREVIEW_KEY=xxxxxxx
 ```
 
 アプリケーションの立ち上げ
