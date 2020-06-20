@@ -12,6 +12,7 @@ Next.jsのgetStaticPropsとgetStaticPaths を使ってmicroCMSのデータを取
 まず最初にmicroCMS側でコンテンツモデルを作成する必要があります。
 
 API名 - ブログ
+
 エンドポイント - blogs
 
 ### APIスキーマ
