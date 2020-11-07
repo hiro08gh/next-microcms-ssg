@@ -4,9 +4,9 @@ Next.jsのgetStaticPropsとgetStaticPaths を使ってmicroCMSのデータを取
 
 ## バージョン
 
-- Next.js 9.4.4
-- React 16.13.1
-- ReactDOM 16.13.1
+- Next.js 10.0.1
+- React 17.0.1
+- ReactDOM 17.0.1
 
 ## コンテンツモデル
 まず最初にmicroCMS側でコンテンツモデルを作成する必要があります。
